@@ -7,7 +7,10 @@ This repository contains the required functions to apply the **MGSR**.
 # Table of Contents
 1. [Summary](#summary)
 2. [Algorithm](#algorithm)
-3. [Example](#example)
+3. [Installation](#installation)
+4. [Reference](#reference)
+5. [Example](#example)
+
 
 -------------
 ## Summary
@@ -38,6 +41,16 @@ We make use of this subspace to simulate a continuous domain that permit the app
 > - Cross-variograms normally follows a "Power Distribution" due to the small scale of Factorial Techniques.
 > - Unlike geostatistical analyses, we don't have a real field where boundaries restrict our study. On the other hand, this aspect is more positive than negative because we can portray a more simple grid without losing information.
 
+## Installation
+```
+install.packages('devtools')
+library(devtools)
+install_github("victorvicpal/MGSR")
+library(MGSR)
+```
+
+## Reference
+[![DOI](https://zenodo.org/badge/76850843.svg)](https://zenodo.org/badge/latestdoi/76850843)
 
 ## Example
 
