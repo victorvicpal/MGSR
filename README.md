@@ -38,7 +38,7 @@ We make use of this subspace to simulate a continuous domain that permit the app
 
 > **Note:**
 
-> - Cross-variograms normally follows a "Power Distribution" due to the small scale of Factorial Techniques.
+> - Cross-variograms usually follows a "Power Distribution" due to the small scale of Factorial Techniques.
 > - Unlike geostatistical analyses, we don't have a real field where boundaries restrict our study. On the other hand, this aspect is more positive than negative because we can portray a more simple grid without losing information.
 
 ## Installation
