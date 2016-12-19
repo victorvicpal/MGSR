@@ -1,5 +1,4 @@
 export(Amatrix)
-export(CrossValidation.R)
 export(GmodCross3)
 export(coefcorr)
 export(cokrig)
