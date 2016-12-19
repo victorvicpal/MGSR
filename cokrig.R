@@ -85,7 +85,7 @@ cokrig <- function(RES,xygrid)
   }
   colnames(Zt) <- names(RES$data)[3:length(RES$data[1,])]
   #sigma <- apply(Zt,2,var)
-  FINAL <- list(Z=cbind.data.frame(xygrid,Zt),Traza=TR)
+  FINAL <- Z=cbind.data.frame(xygrid,Zt)
 
   #Swap <- function(Z,ord=1)
   #{
