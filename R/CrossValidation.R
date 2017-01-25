@@ -133,8 +133,9 @@ CrossValidation <- function(RES)
     Var0 <- as.data.frame(t(matrix(diag(C),ncol=n)))
     Var1 <- as.data.frame(t(matrix(diag(varpr),ncol=n)))
     VAR <- colSums(Var0-Var1)
-    r2 <- 1-apply(Mres^2,2,mean)/VAR
+    r2tot <- 1-apply(Mres^2,2,mean)/VAR ###r2 with total subspatial variance 
+    r2par <- 1-apply(Mres^2,2,mean)/colSums(Mvar) ###r2 with (n-1) subspatial variance
     rmse <- apply(Mres^2,2,mean)
     
-    result <- list(Vartot=VAR,resid=Mres,varres=Mvar,R2=r2,RMSE=rmse)
+    result <- list(Vartot=VAR,resid=Mres,varres=Mvar,R2tot=r2tot,R2par=r2par,RMSE=rmse)
 }
