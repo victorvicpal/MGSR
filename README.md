@@ -50,7 +50,7 @@ library(MGSR)
 ```
 
 ## Reference
-[![DOI](https://zenodo.org/badge/76850843.svg)](https://zenodo.org/badge/latestdoi/76850843)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.264102.svg)](https://doi.org/10.5281/zenodo.264102)
 
 ## Example
 
