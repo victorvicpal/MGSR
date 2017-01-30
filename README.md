@@ -42,7 +42,7 @@ We make use of this subspace to simulate a continuous domain that permit the app
 > - Unlike geostatistical analyses, we don't have a real field where boundaries restrict our study. On the other hand, this aspect is more positive than negative because we can portray a more simple grid without losing information.
 
 ## Installation
-```
+```R
 install.packages('devtools')
 library(devtools)
 install_github("victorvicpal/MGSR")
@@ -55,16 +55,16 @@ library(MGSR)
 ## Example
 
 ###Iris Data
-```
+```R
 data(iris)
 ```
 ####Data Exploration
-```
+```R
 summary(iris)
 apply(iris[which(iris$Species=='versicolor'),1:4],2,function(x,y) plot(density(x))) #density function
 ```
 ####"Versicolor" Train/subset
-```
+```R
 Versicolor <- iris[which(iris$Species=='versicolor'),-5]
 
 ind_subTrain <- sample(50,10)
@@ -73,7 +73,7 @@ subTrain <- Versicolor[ind_subTrain,]
 Train <- Versicolor[-ind_subTrain,]
 ```
 ####Data Standardization
-```
+```R
 means_train <- apply(Train,2,mean)
 sd_train <- apply(Train,2,sd)
 Train_st <- Train
@@ -83,30 +83,30 @@ for (i in 1:length(Train[1,]))
 ```
 
 ####Principal Component Analysis
-```
+```R
 PC_train <- princomp(Train_st)
 biplot(PC_train)
 ```
 ####CrossVariogram
-```
+```R
 CV_train <- crossvariogram(as.data.frame(PC_train$scores[,1:2]),as.data.frame(Train_st),10)
 plot.crossvariogram(CV_train)
 ```
 
 ####lcm fitting
 Tip: *Range value may vary. Check different values within the "Power" function.*
-```
+```R
 RES_train <- lmc(CV_train,'Pow',1.7)
 plot.crossvariogram(CV_train,RES_train)
 ```
 
 ####Grid
-```
+```R
 xygrid <- GRID_MGSR(as.data.frame(PC_train$scores[,1:2]),0.05)
 ```
 
 ####Cokriging
-```
+```R
 Z_train_st <- cokrig(RES_train,xygrid)
 Z_train <- Z_train_st
 
@@ -115,7 +115,7 @@ for (i in 1:length(Train[1,]))
 ```
 
 ####Predicting Subset values
-```
+```R
 ind_pred <- apply(dist2(subTrain[,1:4],Z_train[,3:6]),1,which.min)
 residuales <- subTrain[,1:4]-Z_train[ind_pred,3:6]
 
