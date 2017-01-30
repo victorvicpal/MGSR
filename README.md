@@ -54,32 +54,27 @@ library(MGSR)
 
 ## Example
 
-###Slump Data
-[Information](https://archive.ics.uci.edu/ml/datasets/Concrete+Slump+Test)
+###Iris Data
 ```
-install.packages('RCurl')	#HTTP requests package
-library('RCurl')
-url1 <- getURL('https://archive.ics.uci.edu/ml/machine-learning-databases/concrete/slump/slump_test.data')
-Slump_data <- read.csv(text = url1,colClasses=c("NULL",NA,"NULL","NULL",NA,"NULL",NA,NA,"NULL",NA,NA),col.names = c('no','cement','slag','fly_ash','water','sp','coarse','fine','slump','flow','Comp_str'))
+data(iris)
 ```
+####Data Exploration
+```
+summary(iris)
+apply(iris[which(iris$Species=='versicolor'),1:4],2,function(x,y) plot(density(x))) #density function
+```
+####"Versicolor" Train/Test
+```
+#Train/Test
+Versicolor <- iris[which(iris$Species=='versicolor'),-5]
 
-We create Train/Test datasets
-```
-ind_test <- sample(length(Slump_data[,1]),20)
-Test <- Slump_data[ind_test,]
-Train <- Slump_data[-ind_test,]
-```
+ind_test <- sample(50,10)
 
-####Descriptive analysis
-[Slump test info](en.wikipedia.org/wiki/Concrete_slump_test)
+Test <- Versicolor[ind_test,]
+Train <- Versicolor[-ind_test,]
 ```
-summary(Train)
-#density functions
-par(mfrow=c(2,5))
-apply(Train,2,function(x) plot(density(x)))
-apply(Train,2,boxplot)
-
-#Data Standardization
+####Data Standardization
+```
 means_train <- apply(Train,2,mean)
 sd_train <- apply(Train,2,sd)
 Train_st <- Train
@@ -95,16 +90,14 @@ biplot(PC_train)
 ```
 ####CrossVariogram
 ```
-n_opt <- n_pairs_opt(as.data.frame(PC_train$scores[,1:2]),as.data.frame(Train_st),9,35)
-plot(n_opt$dif_pairs)
-CV_train <- crossvariogram(as.data.frame(PC_train$scores[,1:2]),as.data.frame(Train_st),16)
+CV_train <- crossvariogram(as.data.frame(PC_train$scores[,1:2]),as.data.frame(Train_st),10)
 plot.crossvariogram(CV_train)
 ```
 
 ####lcm fitting
-Range value may vary. Check different values within the "Power" function.
+Tip: *Range value may vary. Check different values within the "Power" function.*
 ```
-RES_train <- lmc(CV_train,'Pow',1.4)
+RES_train <- lmc(CV_train,'Pow',1.7)
 plot.crossvariogram(CV_train,RES_train)
 ```
 
@@ -125,15 +118,16 @@ for (i in 1:length(Train[1,]))
 ####Predicting Test values
 ```
 ind_pred <- apply(dist2(Test[,1:4],Z_train[,3:6]),1,which.min)
-residuales <- Test[,5:6]-Z_train[ind_pred,7:8]
-par(mfrow=c(1,2))
-plot(density(Test$flow),col='blue',main='Flow')
-lines(density(Z_train$flow[ind_pred]),col='red')
-plot(density(Test$Comp_str),col='blue',main='Comp_Str')
-lines(density(Z_train$Comp_str[ind_pred]),col='red')
-par(mfrow=c(2,1))
-qqnorm(residuales$flow)
-qqline(residuales$flow)
-qqnorm(residuales$Comp_str)
-qqline(residuales$Comp_str)
+residuales <- Test[,1:4]-Z_train[ind_pred,3:6]
+
+par(mfrow=c(2,2))
+apply(residuales,2,function(x) plot(density(x)))
+
+for (i in 1:4)
+{
+  qqnorm(residuales[,i])
+  qqline(residuales[,i])
+}
 ```
+
+Try to fit  a model with *virginica* and *setosa* species.
