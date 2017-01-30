@@ -30,11 +30,11 @@ We make use of this subspace to simulate a continuous domain that permit the app
 ## Algorithm
 
 1. Factorial Technique
-2. [Cross-variogram](https://github.com/victorvicpal/MGSR/blob/master/crossvariogram.R)
-    * [CV plot (cross variogram and LMC)](https://github.com/victorvicpal/MGSR/blob/master/plot.crossvariogram.R)
-3. [Linear Model of Coregionalization](https://github.com/victorvicpal/MGSR/blob/master/lmc.R)
-4. [Subspatial Grid](https://github.com/victorvicpal/MGSR/blob/master/grid.R)
-5. [Cokriging](https://github.com/victorvicpal/MGSR/blob/master/cokrig.R)
+2. [Cross-variogram](https://github.com/victorvicpal/MGSR/blob/master/R/crossvariogram.R)
+    * [CV plot (cross variogram and LMC)](https://github.com/victorvicpal/MGSR/blob/master/R/plot.crossvariogram.R)
+3. [Linear Model of Coregionalization](https://github.com/victorvicpal/MGSR/blob/master/R/lmc.R)
+4. [Subspatial Grid](https://github.com/victorvicpal/MGSR/blob/master/R/GRID_MGSR.R)
+5. [Cokriging](https://github.com/victorvicpal/MGSR/blob/master/R/cokrig.R)
 
 > **Note:**
 
