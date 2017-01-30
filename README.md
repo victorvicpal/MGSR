@@ -93,7 +93,7 @@ CV_train <- crossvariogram(as.data.frame(PC_train$scores[,1:2]),as.data.frame(Tr
 plot.crossvariogram(CV_train)
 ```
 
-####lcm fitting
+####lmc fitting
 Tip: *Range value may vary. Check different values within the "Power" function.*
 ```R
 RES_train <- lmc(CV_train,'Pow',1.7)
