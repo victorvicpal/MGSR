@@ -1,8 +1,8 @@
 Package: MGSR
 Title: Multivariate Gaussian Subspatial Regression
 Description: MGSR algorithm.
-Version: 1.0.0
-Date: 2016-12-19
+Version: 1.0.1
+Date: 2017-01-30
 Author: Victor Vicente [aut, cre]
 Maintainer: Victor Vicente <victorvicpal@usal.es>
 URL: https://github.com/victorvicpal/MGSR
