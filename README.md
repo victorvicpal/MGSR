@@ -63,15 +63,14 @@ data(iris)
 summary(iris)
 apply(iris[which(iris$Species=='versicolor'),1:4],2,function(x,y) plot(density(x))) #density function
 ```
-####"Versicolor" Train/Test
+####"Versicolor" Train/subset
 ```
-#Train/Test
 Versicolor <- iris[which(iris$Species=='versicolor'),-5]
 
-ind_test <- sample(50,10)
+ind_subTrain <- sample(50,10)
 
-Test <- Versicolor[ind_test,]
-Train <- Versicolor[-ind_test,]
+subTrain <- Versicolor[ind_subTrain,]
+Train <- Versicolor[-ind_subTrain,]
 ```
 ####Data Standardization
 ```
@@ -115,10 +114,10 @@ for (i in 1:length(Train[1,]))
 {Z_train[,i+2] <- Z_train_st[,i+2]*sd_train[i]+means_train[i]}
 ```
 
-####Predicting Test values
+####Predicting Subset values
 ```
-ind_pred <- apply(dist2(Test[,1:4],Z_train[,3:6]),1,which.min)
-residuales <- Test[,1:4]-Z_train[ind_pred,3:6]
+ind_pred <- apply(dist2(subTrain[,1:4],Z_train[,3:6]),1,which.min)
+residuales <- subTrain[,1:4]-Z_train[ind_pred,3:6]
 
 par(mfrow=c(2,2))
 apply(residuales,2,function(x) plot(density(x)))
