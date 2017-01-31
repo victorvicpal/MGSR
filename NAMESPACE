@@ -1,3 +1,6 @@
+import(MASS)
+import(flexclust)
+
 export(Amatrix)
 export(GmodCross3)
 export(coefcorr)
