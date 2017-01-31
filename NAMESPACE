@@ -1,5 +1,6 @@
 import(MASS)
 import(flexclust)
+import(matrixcalc)
 
 export(Amatrix)
 export(GmodCross3)
