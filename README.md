@@ -54,7 +54,7 @@ library(MGSR)
 
 ## Example
 
-###Iris Data
+### Iris Data
 ```R
 data(iris)
 ```
@@ -63,7 +63,7 @@ data(iris)
 summary(iris)
 apply(iris[which(iris$Species=='versicolor'),1:4],2,function(x,y) plot(density(x))) #density function
 ```
-####"Versicolor" Train/subset
+#### "Versicolor" Train/subset
 ```R
 Versicolor <- iris[which(iris$Species=='versicolor'),-5]
 
@@ -72,7 +72,7 @@ ind_subTrain <- sample(50,10)
 subTrain <- Versicolor[ind_subTrain,]
 Train <- Versicolor[-ind_subTrain,]
 ```
-####Data Standardization
+#### Data Standardization
 ```R
 means_train <- apply(Train,2,mean)
 sd_train <- apply(Train,2,sd)
@@ -82,30 +82,30 @@ for (i in 1:length(Train[1,]))
 {Train_st[,i] <- (Train[,i]-means_train[i])/sd_train[i]}
 ```
 
-####Principal Component Analysis
+#### Principal Component Analysis
 ```R
 PC_train <- princomp(Train_st)
 biplot(PC_train)
 ```
-####CrossVariogram
+#### CrossVariogram
 ```R
 CV_train <- crossvariogram(as.data.frame(PC_train$scores[,1:2]),as.data.frame(Train_st),10)
 plot.crossvariogram(CV_train)
 ```
 
-####lmc fitting
+#### lmc fitting
 Tip: *Range value may vary. Check different values within the "Power" function.*
 ```R
 RES_train <- lmc(CV_train,'Pow',1.7)
 plot.crossvariogram(CV_train,RES_train)
 ```
 
-####Grid
+#### Grid
 ```R
 xygrid <- GRID_MGSR(as.data.frame(PC_train$scores[,1:2]),0.05)
 ```
 
-####Cokriging
+#### Cokriging
 ```R
 Z_train_st <- cokrig(RES_train,xygrid)
 Z_train <- Z_train_st
@@ -114,7 +114,7 @@ for (i in 1:length(Train[1,]))
 {Z_train[,i+2] <- Z_train_st[,i+2]*sd_train[i]+means_train[i]}
 ```
 
-####Predicting Subset values
+#### Predicting Subset values
 ```R
 ind_pred <- apply(dist2(subTrain[,1:4],Z_train[,3:6]),1,which.min)
 residuales <- subTrain[,1:4]-Z_train[ind_pred,3:6]
