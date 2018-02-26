@@ -58,7 +58,7 @@ library(MGSR)
 ```R
 data(iris)
 ```
-####Data Exploration
+#### Data Exploration
 ```R
 summary(iris)
 apply(iris[which(iris$Species=='versicolor'),1:4],2,function(x,y) plot(density(x))) #density function
