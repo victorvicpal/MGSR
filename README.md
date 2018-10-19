@@ -10,6 +10,7 @@ This repository contains the required functions to apply the **MGSR**.
 3. [Installation](#installation)
 4. [Reference](#reference)
 5. [Example](#example)
+6. [How to cite](#citation)
 
 
 -------------
@@ -50,7 +51,8 @@ library(MGSR)
 ```
 
 ## Reference
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.264102.svg)](https://doi.org/10.5281/zenodo.264102)
+[![DOI_software](https://zenodo.org/badge/DOI/10.5281/zenodo.264102.svg)](https://doi.org/10.5281/zenodo.264102)
+[![DOI_article1](https://zenodo.org/badge/DOI/10.1002/col.22142.svg)](https://doi.org/10.1002/col.22142)
 
 ## Example
 
@@ -130,3 +132,14 @@ for (i in 1:4)
 ```
 
 Try to fit  a model with *virginica* and *setosa* species.
+
+## Citation
+
+```
+@book{mgsr,
+      author    = "Vicente-Palacios, V",
+      publisher = "victorvicpal/MGSR",
+      year      = "2016",
+      doi       = "(http://doi.org/10.5281/zenodo.264102)",
+      title     = "Multivariate Gaussian Subspatial Regression"}
+```
